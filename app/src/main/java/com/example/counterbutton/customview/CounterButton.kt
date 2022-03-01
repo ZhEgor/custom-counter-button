@@ -91,6 +91,18 @@ class CounterButton @JvmOverloads constructor(
     }
 
     private fun setup() {
+        setupNumberField()
+        setupIconPlus()
+        setupIconMinus()
+        setupContainer()
+        setupLoading()
+
+        setupPadding()
+        setupMargin()
+        handleCounterValue(number.toString(), Action.Check)
+    }
+
+    private fun setupNumberField() {
         editTextChild.filters += InputFilter.LengthFilter(maxValue.toString().length)
         editTextChild.setTextAppearance(TEXT_STYLE)
         editTextChild.inputType = InputType.TYPE_CLASS_NUMBER
@@ -102,36 +114,39 @@ class CounterButton @JvmOverloads constructor(
                 number = handleCounterValue(s.toString(), Action.Check)
             }
         })
+        containerEditTextChild.gravity = Gravity.CENTER
+        containerEditTextChild.addView(editTextChild)
+    }
+
+    private fun setupLoading() {
         loadingChild.layoutParams = LayoutParams(LOADING_WIDTH, LOADING_HEIGHT)
         loadingChild.repeatCount = ValueAnimator.INFINITE
         loadingChild.setAnimation(R.raw.loading_black)
+        containerLoadingChild.gravity = Gravity.CENTER
+        containerLoadingChild.addView(loadingChild)
+        addView(containerLoadingChild)
+    }
 
-        iconMinusChild.layoutParams = LinearLayout.LayoutParams(ICON_WIDTH, ICON_HEIGHT)
-        iconMinusChild.setOnClickListener {
-            number = handleCounterValue(valueStr = editTextChild.text.toString(), Action.Decrementing)
-        }
-
+    private fun setupIconPlus() {
         iconPlusChild.layoutParams = LinearLayout.LayoutParams(ICON_WIDTH, ICON_HEIGHT)
         iconPlusChild.setOnClickListener {
             number = handleCounterValue(valueStr = editTextChild.text.toString(), Action.Incrementing)
         }
+    }
 
-        containerEditTextChild.gravity = Gravity.CENTER
-        containerEditTextChild.addView(editTextChild)
+    private fun setupIconMinus() {
+        iconMinusChild.layoutParams = LinearLayout.LayoutParams(ICON_WIDTH, ICON_HEIGHT)
+        iconMinusChild.setOnClickListener {
+            number = handleCounterValue(valueStr = editTextChild.text.toString(), Action.Decrementing)
+        }
+    }
 
+    private fun setupContainer() {
         containerChild.gravity = Gravity.CENTER
         containerChild.addView(iconMinusChild)
         containerChild.addView(containerEditTextChild)
         containerChild.addView(iconPlusChild)
         addView(containerChild)
-
-        containerLoadingChild.gravity = Gravity.CENTER
-        containerLoadingChild.addView(loadingChild)
-        addView(containerLoadingChild)
-
-        setupPadding()
-        setupMargin()
-        handleCounterValue(number.toString(), Action.Check)
     }
 
     private fun setupMargin() {
@@ -264,12 +279,10 @@ class CounterButton @JvmOverloads constructor(
         } else {
             _minValue = 0
             _maxValue = 999
-            isMinusEnabled = false
-            isPlusEnabled = true
+            buttonType = ButtonType.STANDARD
+            dimension = Dimension.M
             number = minValue
             isLoading = false
-            dimension = Dimension.M
-            buttonType = ButtonType.STANDARD
         }
     }
 
