@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Counter Button</string>
+    <string name="loading">loading</string>
+    <string name="dimension">dimension</string>
+</resources>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/ll_buttonControler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!--CounterButton-->
+        <com.example.counterbutton.customview.CounterButton
+            android:id="@+id/btn_counterButtonStandard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:value="1"
+            app:loading="true"
+            app:cb_buttonType="standard"
+            app:cb_dimension="S" />
+
+        <com.example.counterbutton.customview.CounterButton
+            android:id="@+id/btn_counterButtonBordered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:value="0"
+            app:cb_buttonType="bordered"
+            app:cb_dimension="S" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_buttonControler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btn_loadingTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loading"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_typeTest" />
+
+        <Button
+            android:id="@+id/btn_dimension"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dimension"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_enabledTest" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

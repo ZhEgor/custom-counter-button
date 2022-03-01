@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="loading" format="boolean" />
+
+    <declare-styleable name="CounterButton">
+        <attr name="android:value" format="integer" />
+        <attr name="android:backgroundTint" />
+        <attr name="android:background" />
+        <attr name="loading" />
+        <attr name="cb_minValue" format="integer" />
+        <attr name="cb_maxValue" format="integer" />
+        <attr name="cb_minusEnabled" format="boolean" />
+        <attr name="cb_plusEnabled" format="boolean" />
+        <attr name="cb_dimension" format="enum">
+            <enum name="L" value="0" />
+            <enum name="M" value="1" />
+            <enum name="S" value="2" />
+            <enum name="XS" value="3" />
+        </attr>
+        <attr name="cb_buttonType" format="enum">
+            <enum name="standard" value="0" />
+            <enum name="bordered" value="1" />
+        </attr>
+    </declare-styleable>
+
+</resources>
